@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opengroup.lzy.sys.dao.SysMsgUserDao" >
+  <resultMap id="BaseResultMap" type="com.opengroup.lzy.sys.domain.SysMsgUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="front_user_id" property="frontUserId" jdbcType="INTEGER" />
+    <result column="msg_body_id" property="msgBodyId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="is_read" property="isRead" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, front_user_id, msg_body_id, content, is_read
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_msg_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_msg_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.opengroup.lzy.sys.domain.SysMsgUser" >
+    insert into sys_msg_user (id, front_user_id, msg_body_id, 
+      content, is_read)
+    values (#{id,jdbcType=INTEGER}, #{frontUserId,jdbcType=INTEGER}, #{msgBodyId,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{isRead,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.opengroup.lzy.sys.domain.SysMsgUser" >
+    insert into sys_msg_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="frontUserId != null" >
+        front_user_id,
+      </if>
+      <if test="msgBodyId != null" >
+        msg_body_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="isRead != null" >
+        is_read,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="frontUserId != null" >
+        #{frontUserId,jdbcType=INTEGER},
+      </if>
+      <if test="msgBodyId != null" >
+        #{msgBodyId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        #{isRead,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.opengroup.lzy.sys.domain.SysMsgUser" >
+    update sys_msg_user
+    <set >
+      <if test="frontUserId != null" >
+        front_user_id = #{frontUserId,jdbcType=INTEGER},
+      </if>
+      <if test="msgBodyId != null" >
+        msg_body_id = #{msgBodyId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        is_read = #{isRead,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.opengroup.lzy.sys.domain.SysMsgUser" >
+    update sys_msg_user
+    set front_user_id = #{frontUserId,jdbcType=INTEGER},
+      msg_body_id = #{msgBodyId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      is_read = #{isRead,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

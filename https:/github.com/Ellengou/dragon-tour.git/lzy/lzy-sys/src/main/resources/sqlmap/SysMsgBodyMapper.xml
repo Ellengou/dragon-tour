@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opengroup.lzy.sys.dao.SysMsgBodyDao" >
+  <resultMap id="BaseResultMap" type="com.opengroup.lzy.sys.domain.SysMsgBody" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="deleted" property="deleted" jdbcType="CHAR" />
+    <result column="gmt_send" property="gmtSend" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="opp_uid" property="oppUid" jdbcType="INTEGER" />
+    <result column="opp_user" property="oppUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, template_id, deleted, gmt_send, gmt_modified, opp_uid, opp_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_msg_body
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_msg_body
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.opengroup.lzy.sys.domain.SysMsgBody" >
+    insert into sys_msg_body (id, template_id, deleted, 
+      gmt_send, gmt_modified, opp_uid, 
+      opp_user)
+    values (#{id,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, #{deleted,jdbcType=CHAR}, 
+      #{gmtSend,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{oppUid,jdbcType=INTEGER}, 
+      #{oppUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.opengroup.lzy.sys.domain.SysMsgBody" >
+    insert into sys_msg_body
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="gmtSend != null" >
+        gmt_send,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+      <if test="oppUid != null" >
+        opp_uid,
+      </if>
+      <if test="oppUser != null" >
+        opp_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="gmtSend != null" >
+        #{gmtSend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oppUid != null" >
+        #{oppUid,jdbcType=INTEGER},
+      </if>
+      <if test="oppUser != null" >
+        #{oppUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.opengroup.lzy.sys.domain.SysMsgBody" >
+    update sys_msg_body
+    <set >
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=CHAR},
+      </if>
+      <if test="gmtSend != null" >
+        gmt_send = #{gmtSend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oppUid != null" >
+        opp_uid = #{oppUid,jdbcType=INTEGER},
+      </if>
+      <if test="oppUser != null" >
+        opp_user = #{oppUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.opengroup.lzy.sys.domain.SysMsgBody" >
+    update sys_msg_body
+    set template_id = #{templateId,jdbcType=INTEGER},
+      deleted = #{deleted,jdbcType=CHAR},
+      gmt_send = #{gmtSend,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      opp_uid = #{oppUid,jdbcType=INTEGER},
+      opp_user = #{oppUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

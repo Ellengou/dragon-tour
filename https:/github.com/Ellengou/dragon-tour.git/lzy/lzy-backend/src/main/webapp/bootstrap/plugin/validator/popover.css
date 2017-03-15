@@ -1,0 +1,27 @@
+.popover.error-popover {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    box-shadow: none;
+    color: #B94A48;
+    cursor: pointer;
+    max-width: none;
+    z-index: 1099;
+}
+.popover.error-popover .popover-content {
+    padding: 6px 14px;
+}
+.popover.error-popover.right .arrow {
+    border-right-color: #EED3D7;
+}
+.popover.error-popover.right .arrow:after {
+    border-right-color: #F2DEDE;
+}
+
+.popover.error-popover.top .arrow {
+    border-top-color: #EED3D7;
+    left: 30px;
+}
+.popover.error-popover.top .arrow:after {
+    border-top-color: #F2DEDE;
+}
+

@@ -1,0 +1,3 @@
+<link href="<%=request.getContextPath()%>/bootstrap/plugin/bootstrap-fileinput-master/css/fileinput.min.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/bootstrap/plugin/bootstrap-fileinput-master/js/fileinput.min.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/plugin/bootstrap-fileinput-master/js/locales/zh.js" type="text/javascript"></script>

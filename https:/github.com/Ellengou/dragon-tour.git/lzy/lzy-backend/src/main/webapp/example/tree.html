@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="tree"></div>
+
+<script src="../bootstrap/js/jquery.js"></script>
+<script src="../bootstrap/js/bootstrap-treeview.js"></script>
+<script src="../bootstrap/js/bootstrap-treeview-add.js"></script>
+<script type="text/javascript">
+    var data = [
+        {
+            text: "Parent 1",
+            state: {
+                checked: true
+            },
+            nodes: [
+                {
+                    text: "Child 1",
+                    nodes: [
+                        {
+                            text: "Grandchild 1",
+                            nodes: [
+                                {
+                                    text: "Grandchild 11"
+                                },
+                                {
+                                    text: "Grandchild 12"
+                                }
+                            ]
+                        },
+                        {
+                            text: "Grandchild 2"
+                        }
+                    ]
+                },
+                {
+                    text: "Child 2"
+                }
+            ]
+        },
+        {
+            text: "Parent 2"
+        },
+        {
+            text: "Parent 3"
+        },
+        {
+            text: "Parent 4"
+        },
+        {
+            text: "Parent 5"
+        }
+    ];
+    function getTree() {
+        // Some logic to retrieve, or generate tree structure
+        return data;
+    }
+
+    $(function () {
+        $('#tree').treeview({
+            data: getTree(),
+            showCheckbox:true,
+            onNodeChecked: function(event, data) {
+                console.log(data);
+                checkAllParent(data);
+            },
+            onNodeUnchecked: function (event, data) {
+                console.log(data);
+                unCheckAllChild(data);
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

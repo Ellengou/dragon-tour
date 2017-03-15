@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-backend" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-commons" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-coupon" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-framework" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-goods" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-goods" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-member" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-mobile" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-order" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-order" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-payment" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-payment" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-sms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/lzy-sys" charset="UTF-8" />
+  </component>
+</project>

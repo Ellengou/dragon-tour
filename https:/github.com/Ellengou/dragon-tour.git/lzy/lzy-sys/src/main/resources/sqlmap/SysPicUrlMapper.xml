@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opengroup.lzy.sys.dao.SysPicUrlDao">
+	<resultMap id="BaseResultMap" type="com.opengroup.lzy.sys.domain.SysPicUrl">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="pic_type_id" property="picTypeId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="seq_num" property="seqNum" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, url, name, pic_type_id, status, seq_num, remark
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_pic_url
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sys_pic_url
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.opengroup.lzy.sys.domain.SysPicUrl">
+		insert into sys_pic_url (id,
+		url, name,
+		pic_type_id, status, seq_num,
+		remark)
+		values
+		(#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{picTypeId,jdbcType=INTEGER},
+		#{status,jdbcType=CHAR}, #{seqNum,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.opengroup.lzy.sys.domain.SysPicUrl">
+		insert into sys_pic_url
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="picTypeId != null">
+				pic_type_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="seqNum != null">
+				seq_num,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="picTypeId != null">
+				#{picTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="seqNum != null">
+				#{seqNum,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.opengroup.lzy.sys.domain.SysPicUrl">
+		update sys_pic_url
+		<set>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="picTypeId != null">
+				pic_type_id = #{picTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="seqNum != null">
+				seq_num = #{seqNum,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.opengroup.lzy.sys.domain.SysPicUrl">
+		update sys_pic_url
+		set url = #{url,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		pic_type_id = #{picTypeId,jdbcType=INTEGER},
+		status =
+		#{status,jdbcType=CHAR},
+		seq_num = #{seqNum,jdbcType=INTEGER},
+		remark =
+		#{remark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- -->
+
+	<select id="queryAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_pic_url where status='0'
+
+	</select>
+	<select id="countByPicTypeId" resultType="Integer">
+
+		select count(1)
+		from
+		sys_pic_url where status='0' and pic_type_id = #{picTypeId}
+	</select>
+	<!-- 查询图片 -->
+	<select id="queryPicUrls" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from sys_pic_url
+		where 1=1
+
+		<if test="name != null and name != ''">
+			<![CDATA[
+				and name like #{name}"%"
+			]]>
+		</if>
+		<if test="picTypeId != null and picTypeId != ''">
+			<![CDATA[
+				and pic_type_id = #{picTypeId} 
+			]]>
+		</if>
+
+
+		limit #{begin} , #{rows}
+	</select>
+
+	<!-- 查询图片数 -->
+	<select id="countPicUrls" resultType="int" parameterType="map">
+		select
+		count(1)
+		from sys_pic_url
+		where 1 = 1
+
+		<if test="name != null and name != ''">
+			<![CDATA[
+				and name like #{name}"%"
+			]]>
+		</if>
+
+		<if test="picTypeId != null ">
+			<![CDATA[
+				and pic_type_id = #{picTypeId} 
+			]]>
+		</if>
+	</select>
+	<select id="selectByPicTypeId" resultMap="BaseResultMap"  parameterType="Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_pic_url
+		where status='0'
+
+		<if test="picTypeId != null">
+			<![CDATA[
+				and pic_type_id = #{picTypeId} 
+			]]>
+		</if>
+
+	</select>
+
+</mapper>

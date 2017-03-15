@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opengroup.lzy.sys.dao.SysCompanyDao">
+	<resultMap id="BaseResultMap" type="com.opengroup.lzy.sys.domain.SysCompany">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="comp_core_id" property="compCoreId" jdbcType="INTEGER" />
+		<result column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="level" property="level" jdbcType="BIT" />
+		<result column="comp_pk" property="compPk" jdbcType="VARCHAR" />
+		<result column="comp_code" property="compCode" jdbcType="VARCHAR" />
+		<result column="comp_sign_name" property="compSignName"
+			jdbcType="VARCHAR" />
+		<result column="comp_short_name" property="compShortName"
+			jdbcType="VARCHAR" />
+		<result column="comp_name" property="compName" jdbcType="VARCHAR" />
+		<result column="cont_person" property="contPerson" jdbcType="VARCHAR" />
+		<result column="cont_phone" property="contPhone" jdbcType="VARCHAR" />
+		<result column="cont_tel" property="contTel" jdbcType="VARCHAR" />
+		<result column="cont_position" property="contPosition"
+			jdbcType="VARCHAR" />
+		<result column="comp_tel" property="compTel" jdbcType="VARCHAR" />
+		<result column="comp_address" property="compAddress" jdbcType="VARCHAR" />
+		<result column="leal_person" property="lealPerson" jdbcType="VARCHAR" />
+		<result column="register_time" property="registerTime"
+			jdbcType="TIMESTAMP" />
+		<result column="comp_email" property="compEmail" jdbcType="VARCHAR" />
+		<result column="register_name" property="registerName"
+			jdbcType="VARCHAR" />
+		<result column="comp_pwd" property="compPwd" jdbcType="VARCHAR" />
+		<result column="comp_trade" property="compTrade" jdbcType="VARCHAR" />
+		<result column="comp_fax" property="compFax" jdbcType="VARCHAR" />
+		<result column="enabled" property="enabled" jdbcType="CHAR" />
+		<result column="ischeck" property="ischeck" jdbcType="CHAR" />
+		<result column="cont_person1" property="contPerson1" jdbcType="VARCHAR" />
+		<result column="cont_phone1" property="contPhone1" jdbcType="CHAR" />
+		<result column="cont_tel1" property="contTel1" jdbcType="VARCHAR" />
+		<result column="position1" property="position1" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="CHAR" />
+		<result column="compno" property="compno" jdbcType="VARCHAR" />
+		<result column="credit_code" property="creditCode" jdbcType="VARCHAR" />
+		<result column="source" property="source" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, comp_core_id, pid, level, comp_pk, comp_code,
+		comp_sign_name,
+		comp_short_name,
+		comp_name, cont_person, cont_phone,
+		cont_tel, cont_position, comp_tel,
+		comp_address,
+		leal_person,
+		register_time, comp_email, register_name, comp_pwd, comp_trade,
+		comp_fax,
+		enabled, ischeck, cont_person1, cont_phone1, cont_tel1,
+		position1,
+		create_time, remark,
+		salt, type, compno, credit_code, source
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sys_company
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.opengroup.lzy.sys.domain.SysCompany"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into sys_company (id,
+		comp_core_id, pid,
+		level, comp_pk, comp_code,
+		comp_sign_name,
+		comp_short_name, comp_name,
+		cont_person, cont_phone, cont_tel,
+		cont_position, comp_tel, comp_address,
+		leal_person, register_time,
+		comp_email,
+		register_name, comp_pwd, comp_trade,
+		comp_fax, enabled,
+		ischeck,
+		cont_person1, cont_phone1, cont_tel1,
+		position1, create_time,
+		remark,
+		salt, type, compno, credit_code,
+		source)
+		values
+		(#{id,jdbcType=INTEGER}, #{compCoreId,jdbcType=INTEGER},
+		#{pid,jdbcType=INTEGER},
+		#{level,jdbcType=BIT},
+		#{compPk,jdbcType=VARCHAR}, #{compCode,jdbcType=VARCHAR},
+		#{compSignName,jdbcType=VARCHAR}, #{compShortName,jdbcType=VARCHAR},
+		#{compName,jdbcType=VARCHAR},
+		#{contPerson,jdbcType=VARCHAR},
+		#{contPhone,jdbcType=VARCHAR}, #{contTel,jdbcType=VARCHAR},
+		#{contPosition,jdbcType=VARCHAR}, #{compTel,jdbcType=VARCHAR},
+		#{compAddress,jdbcType=VARCHAR},
+		#{lealPerson,jdbcType=VARCHAR},
+		#{registerTime,jdbcType=TIMESTAMP}, #{compEmail,jdbcType=VARCHAR},
+		#{registerName,jdbcType=VARCHAR}, #{compPwd,jdbcType=VARCHAR},
+		#{compTrade,jdbcType=VARCHAR},
+		#{compFax,jdbcType=VARCHAR},
+		#{enabled,jdbcType=CHAR}, #{ischeck,jdbcType=CHAR},
+		#{contPerson1,jdbcType=VARCHAR}, #{contPhone1,jdbcType=CHAR},
+		#{contTel1,jdbcType=VARCHAR},
+		#{position1,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR},
+		#{salt,jdbcType=VARCHAR}, #{type,jdbcType=CHAR},
+		#{compno,jdbcType=VARCHAR}, #{creditCode,jdbcType=VARCHAR},
+		#{source,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.opengroup.lzy.sys.domain.SysCompany"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into sys_company
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="compCoreId != null">
+				comp_core_id,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="compPk != null">
+				comp_pk,
+			</if>
+			<if test="compCode != null">
+				comp_code,
+			</if>
+			<if test="compSignName != null">
+				comp_sign_name,
+			</if>
+			<if test="compShortName != null">
+				comp_short_name,
+			</if>
+			<if test="compName != null">
+				comp_name,
+			</if>
+			<if test="contPerson != null">
+				cont_person,
+			</if>
+			<if test="contPhone != null">
+				cont_phone,
+			</if>
+			<if test="contTel != null">
+				cont_tel,
+			</if>
+			<if test="contPosition != null">
+				cont_position,
+			</if>
+			<if test="compTel != null">
+				comp_tel,
+			</if>
+			<if test="compAddress != null">
+				comp_address,
+			</if>
+			<if test="lealPerson != null">
+				leal_person,
+			</if>
+			<if test="registerTime != null">
+				register_time,
+			</if>
+			<if test="compEmail != null">
+				comp_email,
+			</if>
+			<if test="registerName != null">
+				register_name,
+			</if>
+			<if test="compPwd != null">
+				comp_pwd,
+			</if>
+			<if test="compTrade != null">
+				comp_trade,
+			</if>
+			<if test="compFax != null">
+				comp_fax,
+			</if>
+			<if test="enabled != null">
+				enabled,
+			</if>
+			<if test="ischeck != null">
+				ischeck,
+			</if>
+			<if test="contPerson1 != null">
+				cont_person1,
+			</if>
+			<if test="contPhone1 != null">
+				cont_phone1,
+			</if>
+			<if test="contTel1 != null">
+				cont_tel1,
+			</if>
+			<if test="position1 != null">
+				position1,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="compno != null">
+				compno,
+			</if>
+			<if test="creditCode != null">
+				credit_code,
+			</if>
+			<if test="source != null">
+				source,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="compCoreId != null">
+				#{compCoreId,jdbcType=INTEGER},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=BIT},
+			</if>
+			<if test="compPk != null">
+				#{compPk,jdbcType=VARCHAR},
+			</if>
+			<if test="compCode != null">
+				#{compCode,jdbcType=VARCHAR},
+			</if>
+			<if test="compSignName != null">
+				#{compSignName,jdbcType=VARCHAR},
+			</if>
+			<if test="compShortName != null">
+				#{compShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="compName != null">
+				#{compName,jdbcType=VARCHAR},
+			</if>
+			<if test="contPerson != null">
+				#{contPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="contPhone != null">
+				#{contPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="contTel != null">
+				#{contTel,jdbcType=VARCHAR},
+			</if>
+			<if test="contPosition != null">
+				#{contPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="compTel != null">
+				#{compTel,jdbcType=VARCHAR},
+			</if>
+			<if test="compAddress != null">
+				#{compAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="lealPerson != null">
+				#{lealPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTime != null">
+				#{registerTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="compEmail != null">
+				#{compEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="registerName != null">
+				#{registerName,jdbcType=VARCHAR},
+			</if>
+			<if test="compPwd != null">
+				#{compPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="compTrade != null">
+				#{compTrade,jdbcType=VARCHAR},
+			</if>
+			<if test="compFax != null">
+				#{compFax,jdbcType=VARCHAR},
+			</if>
+			<if test="enabled != null">
+				#{enabled,jdbcType=CHAR},
+			</if>
+			<if test="ischeck != null">
+				#{ischeck,jdbcType=CHAR},
+			</if>
+			<if test="contPerson1 != null">
+				#{contPerson1,jdbcType=VARCHAR},
+			</if>
+			<if test="contPhone1 != null">
+				#{contPhone1,jdbcType=CHAR},
+			</if>
+			<if test="contTel1 != null">
+				#{contTel1,jdbcType=VARCHAR},
+			</if>
+			<if test="position1 != null">
+				#{position1,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=CHAR},
+			</if>
+			<if test="compno != null">
+				#{compno,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCode != null">
+				#{creditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				#{source,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.opengroup.lzy.sys.domain.SysCompany">
+		update sys_company
+		<set>
+			<if test="compCoreId != null">
+				comp_core_id = #{compCoreId,jdbcType=INTEGER},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=BIT},
+			</if>
+			<if test="compPk != null">
+				comp_pk = #{compPk,jdbcType=VARCHAR},
+			</if>
+			<if test="compCode != null">
+				comp_code = #{compCode,jdbcType=VARCHAR},
+			</if>
+			<if test="compSignName != null">
+				comp_sign_name = #{compSignName,jdbcType=VARCHAR},
+			</if>
+			<if test="compShortName != null">
+				comp_short_name = #{compShortName,jdbcType=VARCHAR},
+			</if>
+			<if test="compName != null">
+				comp_name = #{compName,jdbcType=VARCHAR},
+			</if>
+			<if test="contPerson != null">
+				cont_person = #{contPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="contPhone != null">
+				cont_phone = #{contPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="contTel != null">
+				cont_tel = #{contTel,jdbcType=VARCHAR},
+			</if>
+			<if test="contPosition != null">
+				cont_position = #{contPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="compTel != null">
+				comp_tel = #{compTel,jdbcType=VARCHAR},
+			</if>
+			<if test="compAddress != null">
+				comp_address = #{compAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="lealPerson != null">
+				leal_person = #{lealPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTime != null">
+				register_time = #{registerTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="compEmail != null">
+				comp_email = #{compEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="registerName != null">
+				register_name = #{registerName,jdbcType=VARCHAR},
+			</if>
+			<if test="compPwd != null">
+				comp_pwd = #{compPwd,jdbcType=VARCHAR},
+			</if>
+			<if test="compTrade != null">
+				comp_trade = #{compTrade,jdbcType=VARCHAR},
+			</if>
+			<if test="compFax != null">
+				comp_fax = #{compFax,jdbcType=VARCHAR},
+			</if>
+			<if test="enabled != null">
+				enabled = #{enabled,jdbcType=CHAR},
+			</if>
+			<if test="ischeck != null">
+				ischeck = #{ischeck,jdbcType=CHAR},
+			</if>
+			<if test="contPerson1 != null">
+				cont_person1 = #{contPerson1,jdbcType=VARCHAR},
+			</if>
+			<if test="contPhone1 != null">
+				cont_phone1 = #{contPhone1,jdbcType=CHAR},
+			</if>
+			<if test="contTel1 != null">
+				cont_tel1 = #{contTel1,jdbcType=VARCHAR},
+			</if>
+			<if test="position1 != null">
+				position1 = #{position1,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=CHAR},
+			</if>
+			<if test="compno != null">
+				compno = #{compno,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCode != null">
+				credit_code = #{creditCode,jdbcType=VARCHAR},
+			</if>
+			<if test="source != null">
+				source = #{source,jdbcType=CHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.opengroup.lzy.sys.domain.SysCompany">
+		update sys_company
+		set comp_core_id = #{compCoreId,jdbcType=INTEGER},
+		pid =
+		#{pid,jdbcType=INTEGER},
+		level = #{level,jdbcType=BIT},
+		comp_pk =
+		#{compPk,jdbcType=VARCHAR},
+		comp_code = #{compCode,jdbcType=VARCHAR},
+		comp_sign_name = #{compSignName,jdbcType=VARCHAR},
+		comp_short_name =
+		#{compShortName,jdbcType=VARCHAR},
+		comp_name =
+		#{compName,jdbcType=VARCHAR},
+		cont_person =
+		#{contPerson,jdbcType=VARCHAR},
+		cont_phone =
+		#{contPhone,jdbcType=VARCHAR},
+		cont_tel = #{contTel,jdbcType=VARCHAR},
+		cont_position = #{contPosition,jdbcType=VARCHAR},
+		comp_tel =
+		#{compTel,jdbcType=VARCHAR},
+		comp_address =
+		#{compAddress,jdbcType=VARCHAR},
+		leal_person =
+		#{lealPerson,jdbcType=VARCHAR},
+		register_time =
+		#{registerTime,jdbcType=TIMESTAMP},
+		comp_email =
+		#{compEmail,jdbcType=VARCHAR},
+		register_name =
+		#{registerName,jdbcType=VARCHAR},
+		comp_pwd =
+		#{compPwd,jdbcType=VARCHAR},
+		comp_trade =
+		#{compTrade,jdbcType=VARCHAR},
+		comp_fax = #{compFax,jdbcType=VARCHAR},
+		enabled = #{enabled,jdbcType=CHAR},
+		ischeck = #{ischeck,jdbcType=CHAR},
+		cont_person1 = #{contPerson1,jdbcType=VARCHAR},
+		cont_phone1 =
+		#{contPhone1,jdbcType=CHAR},
+		cont_tel1 = #{contTel1,jdbcType=VARCHAR},
+		position1 = #{position1,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		type = #{type,jdbcType=CHAR},
+		compno =
+		#{compno,jdbcType=VARCHAR},
+		credit_code =
+		#{creditCode,jdbcType=VARCHAR},
+		source = #{source,jdbcType=CHAR}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询公司列表 -->
+	<select id="queryCompanys" resultType="map" parameterType="map">
+		select
+		id,
+		comp_core_id compCoreId,
+		pid,
+		level,
+		comp_name compName,
+		cont_person contPerson,
+		cont_phone contPhone,
+		cont_tel contTel,
+		comp_email compEmail,
+		enabled,
+		ischeck,
+		source
+		from sys_company
+		where 1 = 1
+
+		<if test="level != null and level != ''">
+			<![CDATA[
+				and level = #{level}
+			]]>
+		</if>
+		<if test="compName != null and compName != ''">
+			<![CDATA[
+				and comp_name like CONCAT('%','${compName}','%')
+			]]>
+		</if>
+		<if test="pid != null and pid != ''">
+			<![CDATA[
+				and pid = #{pid} 
+			]]>
+		</if>
+		<if test="type != null and type != ''">
+			<![CDATA[
+				and type = #{type} 
+			]]>
+		</if>
+		<if test="ischeck != null and ischeck != ''">
+			<![CDATA[
+				and ischeck = #{ischeck} 
+			]]>
+		</if>
+		<if test="compCoreId != null and compCoreId != ''">
+            <![CDATA[
+				and comp_core_id = #{compCoreId}
+			]]>
+		</if>
+		<if test="noSelf != null and noSelf != ''">
+            <![CDATA[
+				and id = #{compCoreId}
+			]]>
+		</if>
+		order by create_time desc
+		<if test="begin != null and rows != null ">
+			<![CDATA[
+				limit #{begin} , #{rows}
+			]]>
+		</if>
+	</select>
+
+	<select id="queryCompanysForId" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select id
+		from sys_company
+		where 1 = 1
+		<if test="pid != null">
+			<![CDATA[
+				and pid = #{pid}
+			]]>
+		</if>
+		<if test="compCoreId != null">
+			<![CDATA[
+				and comp_core_id = #{compCoreId}
+			]]>
+		</if>
+		<if test="type != null and type != ''">
+			<![CDATA[
+				and type = #{type}
+			]]>
+		</if>
+	</select>
+
+	<!-- 统计公司列表数 -->
+	<select id="countCompanys" resultType="int" parameterType="map">
+		select
+		count(1)
+		from sys_company
+		where 1 = 1
+
+		<if test="level != null and level != ''">
+			<![CDATA[
+				and level = #{level}
+			]]>
+		</if>
+
+		<if test="compName != null and compName != ''">
+			<![CDATA[
+				and comp_name like CONCAT('%','${compName}','%')
+			]]>
+		</if>
+		<if test="type != null and type != ''">
+			<![CDATA[
+				and type = #{type} 
+			]]>
+		</if>
+		<if test="pid != null and pid != ''">
+			<![CDATA[
+				and pid = #{pid} 
+			]]>
+		</if>
+		<if test="ischeck != null and ischeck != ''">
+			<![CDATA[
+				and ischeck = #{ischeck} 
+			]]>
+		</if>
+		<if test="compCoreId != null and compCoreId != ''">
+            <![CDATA[
+				and comp_core_id = #{compCoreId}
+			]]>
+		</if>
+		<if test="noSelf != null and noSelf != ''">
+            <![CDATA[
+				and id = #{compCoreId}
+			]]>
+		</if>
+	</select>
+
+	<!-- 查询子公司列表 -->
+	<select id="querySubCompanys" resultType="map" parameterType="map">
+		select
+		id,
+		comp_core_id compCoreId,
+		pid,
+		level,
+		comp_name compName,
+		cont_person contPerson,
+		cont_phone contPhone,
+		cont_tel contTel,
+		comp_email compEmail,
+		enabled,
+		ischeck,
+		compno
+		from sys_company
+		where level
+		&lt;&gt; 1
+
+		<if test="compName != null and compName != ''">
+			<![CDATA[
+				and comp_name like CONCAT('%','${compName}','%')
+			]]>
+		</if>
+
+		<if test="compno != null and compno != ''">
+			<![CDATA[
+				and compno = ${compno}
+			]]>
+		</if>
+
+		#pid,pid#
+
+		<if test="begin != null and rows != null ">
+			<![CDATA[
+				limit #{begin} , #{rows}
+			]]>
+		</if>
+	</select>
+
+	<!-- 统计子公司列表数 -->
+	<select id="countSubCompanys" resultType="int" parameterType="map">
+		select
+		count(1)
+		from sys_company
+		where level &lt;&gt; 1
+
+		<if test="compName != null and compName != ''">
+			<![CDATA[
+				and comp_name like CONCAT('%','${compName}','%')
+			]]>
+		</if>
+
+		<if test="compno != null and compno != ''">
+			<![CDATA[
+				and compno = ${compno}
+			]]>
+		</if>
+
+		#pid,pid#
+	</select>
+
+	<select id="querySubCompanysByGys" resultType="java.util.HashMap"
+		parameterType="map">
+		SELECT
+		DISTINCT sus.company_id id,
+		sc.comp_name name
+		FROM
+		sys_user_supp
+		sus,
+		sys_company sc
+		WHERE
+		sc.id = sus.company_id
+
+		<if test="compCoreId != null and compCoreId != ''">
+			<![CDATA[
+				and sus.comp_core_id = #{compCoreId,jdbcType=INTEGER}
+			]]>
+		</if>
+		<if test="frontUserId != null and frontUserId != ''">
+			<![CDATA[
+				and sus.front_user_id = #{frontUserId,jdbcType=INTEGER}
+			]]>
+		</if>
+		<if test="enabled != null and enabled != ''">
+			<![CDATA[
+				and sus.enabled = #{enabled}
+			]]>
+		</if>
+	</select>
+
+	<select id="querySimpleCompany" resultType="map" parameterType="map">
+
+		select sc.id,sc.comp_name from sys_company sc where 1 = 1
+
+		<if test="id != null and id != ''">
+			<![CDATA[
+				and sc.id = #{id,jdbcType=INTEGER}
+			]]>
+		</if>
+		<if test="pid != null and pid != ''">
+			<![CDATA[
+				and sc.pid = #{pid,jdbcType=INTEGER}
+			]]>
+		</if>
+	</select>
+
+	<!-- 查询所有公司列表 -->
+	<select id="queryAllCompanys" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company
+	</select>
+
+	<!-- 根据账号查询公司信息 -->
+	<select id="getCompanyByRegisterName" resultMap="BaseResultMap"
+		parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company
+		where register_name = #{registerName}
+	</select>
+
+	<!-- 根据账号查询公司信息 -->
+	<select id="getCompanyByCompName" resultMap="BaseResultMap"
+		parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company
+		where comp_name = #{compName}
+	</select>
+
+	<select id="queryRelationCompanys" resultType="map"
+		parameterType="map">
+		SELECT
+		sc.id,
+		sc.comp_core_id compCoreId,
+		sc.pid,
+		sc. LEVEL,
+		sc.comp_name
+		compName,
+		sc.cont_person contPerson,
+		sc.cont_phone contPhone,
+		sc.cont_tel contTel,
+		sc.comp_email compEmail,
+		sc.ischeck,
+		sus.enabled
+		suppEnabled,
+		sus.id suppId
+		FROM
+		sys_company sc,
+		sys_user_supp sus
+		WHERE
+		sus.company_id = sc.id
+		<!-- 公司需要启用的 -->
+		and sc.enabled = '0'
+		<if test="type != null and type != ''">
+			<![CDATA[
+				and sus.type = #{type}
+			]]>
+		</if>
+		<if test="frontUserId != null and frontUserId != ''">
+			<![CDATA[
+				and sus.front_user_id = ${frontUserId}
+			]]>
+		</if>
+		<if test="enabled != null and enabled != ''">
+			<![CDATA[
+				and sus.enabled = ${enabled}
+			]]>
+		</if>
+		<if test="compCoreId != null and compCoreId != ''">
+			<![CDATA[
+				and sc.comp_core_id = ${compCoreId}
+			]]>
+		</if>
+		limit #{begin} , #{rows}
+
+	</select>
+	<select id="countRelationCompanys" resultType="int"
+		parameterType="map">
+		SELECT
+		count(1)
+		FROM
+		sys_company sc,
+		sys_user_supp sus
+		WHERE
+		sus.company_id
+		= sc.id
+		<!-- 公司需要启用的 -->
+		and sc.enabled = '0'
+		<if test="type != null and type != ''">
+			<![CDATA[
+				and sus.type = #{type}
+			]]>
+		</if>
+		<if test="frontUserId != null and frontUserId != ''">
+			<![CDATA[
+				and sus.front_user_id = ${frontUserId}
+			]]>
+		</if>
+		<if test="enabled != null and enabled != ''">
+			<![CDATA[
+				and sus.enabled = ${enabled}
+			]]>
+		</if>
+		<if test="compCoreId != null and compCoreId != ''">
+			<![CDATA[
+				and sc.comp_core_id = ${compCoreId}
+			]]>
+		</if>
+	</select>
+	<!-- 查询关联子公司列表 -->
+	<!-- <select id="queryRelationSubCompanys" resultType="map" parameterType="map"> 
+		select sc.id, sc.comp_core_id compCoreId, sc.pid, sc.level, sc.comp_name 
+		compName, sc.cont_person contPerson, sc.cont_phone contPhone, sc.cont_tel 
+		contTel, sc.comp_email compEmail, sc.enabled, sc.ischeck, (case when sus.enabled 
+		is null then 1 else sus.enabled end) suppEnabled, sus.id suppId from sys_company 
+		sc left join sys_user_supp sus on sus.company_id = sc.id <if test="type != 
+		null and type != ''"> <![CDATA[ and sus.type = #{type} ]]> </if> <if test="frontUserId 
+		!= null and frontUserId != ''"> <![CDATA[ and sus.front_user_id = ${frontUserId} 
+		]]> </if> where 1 = 1 #pid,pid# <if test="compName != null and compName != 
+		''"> <![CDATA[ and sc.comp_name like CONCAT('%','${compName}','%') ]]> </if> 
+		order by suppEnabled <if test="begin != null and rows != null "> <![CDATA[ 
+		limit #{begin} , #{rows} ]]> </if> </select> -->
+
+	<!-- 统计关联子公司列表数 -->
+	<!-- <select id="countRelationSubCompanys" resultType="int" parameterType="map"> 
+		select count(1) from sys_company sc left join sys_user_supp sus on sus.company_id 
+		= sc.id <if test="type != null and type != ''"> <![CDATA[ and sus.type = 
+		#{type} ]]> </if> <if test="frontUserId != null and frontUserId != ''"> <![CDATA[ 
+		and sus.front_user_id = ${frontUserId} ]]> </if> where 1 = 1 #pid,pid# <if 
+		test="compName != null and compName != ''"> <![CDATA[ and sc.comp_name like 
+		CONCAT('%','${compName}','%') ]]> </if> </select> -->
+
+	<!-- 校验公司编号唯一 -->
+	<select id="checkCompno" resultType="int" parameterType="map">
+		select
+		count(1)
+		from sys_company where 1 = 1
+
+		<if test="pid != null and pid != ''">
+			<![CDATA[
+				and pid = ${pid}
+			]]>
+		</if>
+
+		<if test="compno != null and compno != ''">
+			<![CDATA[
+				and compno = #{compno}
+			]]>
+		</if>
+
+	</select>
+
+	<!-- 导出数据查询 -->
+	<select id="querySubCompanysExport" resultType="map"
+		parameterType="map">
+		select
+		sc.compno,
+		sc.comp_name as compName,
+		sc.cont_person as contPerson,
+		sc.cont_phone as contPhone,
+		sc.cont_tel as contTel,
+		sc.cont_position as
+		contPosition,
+		sc.cont_person1 as contPerson1,
+		sc.cont_phone1 as
+		contPhone1,
+		sc.cont_tel1 as contTel1,
+		sc.position1 as contPosition1,
+		sc.comp_tel as compTel,
+		sc.comp_address as
+		compAddress,
+		sc.leal_person as
+		lealPerson,
+		sc.register_time as
+		registerTime,
+		sc.comp_email as compEmail,
+		sc.register_name as
+		registerName,
+		sc.enabled as enabled,
+		case sc.ischeck
+		when '0' then '未审核'
+		when '1' then '审核通过' when '2' then '审核未通过' end as
+		ischeck,
+		sc.ischeck
+		as ischeck,
+		sc.comp_fax as compFax
+		from sys_company sc
+		where 1 = 1
+		#pid,pid#
+		<if test="compName != null and compName != ''">
+            <![CDATA[
+				and comp_name like CONCAT('%','${compName}','%')
+			]]>
+		</if>
+		<if test="compno != null and compno != ''">
+            <![CDATA[
+				and compno = ${compno}
+			]]>
+		</if>
+		<if test="ids != null and ids != ''">
+            <![CDATA[
+				and id in (${ids})
+			]]>
+		</if>
+	</select>
+
+
+	<!-- 根据PK 获取企业 -->
+	<select id="selectByCompPk" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company
+		where comp_pk = #{compPk}
+	</select>
+
+	<!-- 根据compCode 获取企业信息 -->
+	<select id="selectByCompCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company
+		where comp_code = #{compCode} and comp_core_id =
+		#{compCoreId}
+	</select>
+
+	<!-- 查询公司社会信用代码是否唯一 -->
+	<select id="checkCreditCode" resultType="int" parameterType="java.lang.String">
+		select
+		count(1)
+		from sys_company
+		where credit_code = #{creditCode}
+	</select>
+
+	<select id="queryOtherSysCompanyAndUserInfo" resultType="map"
+		parameterType="map">
+		SELECT
+		sc.comp_name,
+		sc.id company_id,
+		sci.other_sys_company_name,
+		sci.other_sys_company_number,
+		sui.merchant_id,
+		sui.merchant_name,
+		sui.merchant_number
+		FROM
+		sys_company sc,
+		sos_company_info sci,
+		sos_user_company_conn suc,
+		sos_user_info sui
+		WHERE
+		sc.comp_pk =
+		sci.other_sys_company_id
+		AND sci.other_sys_company_id =
+		suc.other_sys_company_id
+		AND suc.other_sys_user_id = sui.merchant_id
+		<!-- 子公司过滤 -->
+		<if test="companyId != null and companyId != ''">
+            <![CDATA[
+				AND sc.id = ${companyId}
+			]]>
+		</if>
+		<!-- 核心企业过滤 -->
+		<if test="compCoreId != null and compCoreId != ''">
+            <![CDATA[
+				AND sc.comp_core_id = ${compCoreId}
+			]]>
+		</if>
+		<!-- 其他系统-供应商 -->
+		<if test="isSupp != null and isSupp != ''">
+            <![CDATA[
+				and suc.is_supp = ${isSupp}
+			]]>
+		</if>
+		<!-- 其他系统-经销商、客户 -->
+		<if test="isCustomer != null and isCustomer != ''">
+            <![CDATA[
+				and suc.is_customer = ${isCustomer}
+			]]>
+		</if>
+		<!-- 用户名称过滤 -->
+		<if test="merchantName != null and merchantName != ''">
+            <![CDATA[
+				and merchant_name like CONCAT('%','${merchantName}','%')
+			]]>
+		</if>
+		limit #{begin} , #{rows}
+	</select>
+	<select id="countOtherSysCompanyAndUserInfo" resultType="int"
+		parameterType="map">
+		SELECT
+		count(1)
+		FROM
+		sys_company sc,
+		sos_company_info sci,
+		sos_user_company_conn suc,
+		sos_user_info sui
+		WHERE
+		sc.comp_pk =
+		sci.other_sys_company_id
+		AND sci.other_sys_company_id =
+		suc.other_sys_company_id
+		AND suc.other_sys_user_id = sui.merchant_id
+		<!-- 子公司过滤 -->
+		<if test="companyId != null and companyId != ''">
+            <![CDATA[
+				AND sc.id = ${companyId}
+			]]>
+		</if>
+		<!-- 核心企业过滤 -->
+		<if test="compCoreId != null and compCoreId != ''">
+            <![CDATA[
+				AND sc.comp_core_id = ${compCoreId}
+			]]>
+		</if>
+		<!-- 其他系统-供应商 -->
+		<if test="isSupp != null and isSupp != ''">
+            <![CDATA[
+				and suc.is_supp = ${isSupp}
+			]]>
+		</if>
+		<!-- 其他系统-经销商、客户 -->
+		<if test="isCustomer != null and isCustomer != ''">
+            <![CDATA[
+				and suc.is_customer = ${isCustomer}
+			]]>
+		</if>
+		<!-- 用户名称过滤 -->
+		<if test="merchantName != null and merchantName != ''">
+            <![CDATA[
+				and merchant_name like CONCAT('%','${merchantName}','%')
+			]]>
+		</if>
+	</select>
+
+
+	<!-- 根据level选择公司 -->
+	<select id="selectCompanysByLevel1" resultType="map">
+		SELECT
+		id,comp_name,type from sys_company where level ='1'
+	</select>
+
+	<!-- 根据核心企业标识查询核心企业 -->
+	<select id="selectByCompSianName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company
+		where comp_sign_name = #{compSignName}
+	</select>
+	<select id="selectIsCore" resultType="Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_company where pid='0'
+	</select>
+
+</mapper>

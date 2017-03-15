@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opengroup.lzy.sys.dao.SysPicTypeDao" >
+  <resultMap id="BaseResultMap" type="com.opengroup.lzy.sys.domain.SysPicType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="val" property="val" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="platform" property="platform" jdbcType="CHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, val, name, platform, des, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_pic_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_pic_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.opengroup.lzy.sys.domain.SysPicType" >
+    insert into sys_pic_type (id, val, name, 
+      platform, des, status)
+    values (#{id,jdbcType=INTEGER}, #{val,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=CHAR}, #{des,jdbcType=VARCHAR}, #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.opengroup.lzy.sys.domain.SysPicType" >
+    insert into sys_pic_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="val != null" >
+        val,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="des != null" >
+        des,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="val != null" >
+        #{val,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=CHAR},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.opengroup.lzy.sys.domain.SysPicType" >
+    update sys_pic_type
+    <set >
+      <if test="val != null" >
+        val = #{val,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=CHAR},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.opengroup.lzy.sys.domain.SysPicType" >
+    update sys_pic_type
+    set val = #{val,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=CHAR},
+      des = #{des,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--  -->
+  
+  
+  <!-- 查询图片类型 -->
+	<select id="queryPicTypes" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from sys_pic_type
+		where 1=1
+		
+		<if test="name != null and name != ''">
+			<![CDATA[
+				and name like #{name}"%"
+			]]>
+		</if>
+
+		<if test="status != null and status != ''">
+			<![CDATA[
+				and status = #{status} 
+			]]>
+		</if>
+			<if test="platform != null and platform != ''">
+			<![CDATA[
+				and platform = #{platform} 
+			]]>
+		</if>
+	
+
+		limit #{begin} , #{rows}
+	</select>
+
+	<!-- 查询图片类型数 -->
+	<select id="countPicTypes" resultType="int" parameterType="map">
+		select
+		count(1)
+		from sys_pic_type
+		where 1 = 1
+		
+		<if test="name != null and name != ''">
+			<![CDATA[
+				and name like #{name}"%"
+			]]>
+		</if>
+
+		<if test="platform != null and platform != ''">
+			<![CDATA[
+				and platform = #{platform} 
+			]]>
+		</if>
+	</select>
+	
+	<select id="queryByStatus" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from sys_pic_type
+		where status='0'
+	</select>
+	
+	
+  
+</mapper>

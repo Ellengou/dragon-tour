@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/css/jquery.treegrid.css">
+    <!--<link rel="stylesheet" href="../bootstrap/css/default.min.css">-->
+
+    <script type="text/javascript" src="../bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/jquery.treegrid.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/jquery.treegrid.add.js"></script>
+</head>
+<body>
+<table id="treeGrid" class="tree table table-bordered table-striped table-condensed">
+    <thead>
+    <tr>
+        <th data-field="id" width="80">id</th>
+        <th data-field="name" width="100">name</th>
+        <th data-field="url" width="220">url</th>
+    </tr>
+    </thead>
+</table>
+
+<button onclick="test();">TEST</button>
+
+<script>
+    function test() {
+        console.log($('.tree').treegrid('getSelectData'));
+    }
+</script>
+</body>
+</html>

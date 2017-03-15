@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summernote</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../bootstrap/js/jquery.js"></script>
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <link href="../bootstrap/css/summernote.css" rel="stylesheet">
+    <script src="../bootstrap/js/summernote.js"></script>
+    <style>
+        .placeholder {
+            font-size: 11px;
+            color: #aeaeae;
+        }
+    </style>
+</head>
+<body>
+
+<div id="summernote">
+    <div class="placeholder">
+        请输入...
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 360,
+            callbacks: {
+                onInit: function() {
+                    $('.placeholder').show();
+                },
+                onFocus: function() {
+                    $('.placeholder').hide();
+                },
+                onBlur: function() {
+                    var $self = $(this);
+                    setTimeout(function() {
+                        if ($self.summernote('isEmpty') && !$self.summernote('codeview.isActivated')) {
+                            $('.placeholder').show();
+                        }
+                    }, 300);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

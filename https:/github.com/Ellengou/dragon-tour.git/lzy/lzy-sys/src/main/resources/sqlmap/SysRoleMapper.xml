@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Dao 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opengroup.lzy.sys.dao.SysRoleDao" >
+    <resultMap id="BaseResultMap" type="com.opengroup.lzy.sys.domain.SysRole" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="comp_core_id" property="compCoreId" jdbcType="INTEGER" />
+        <result column="company_id" property="companyId" jdbcType="INTEGER" />
+        <result column="org_id" property="orgId" jdbcType="BIGINT" />
+        <result column="rlname" property="rlname" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="memo" property="memo" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id, comp_core_id, company_id, org_id, rlname, user_id, operate_time, status, memo
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_role
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from sys_role
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.opengroup.lzy.sys.domain.SysRole" >
+        insert into sys_role (id, comp_core_id, company_id,
+        org_id, rlname, user_id,
+        operate_time, status, memo
+        )
+        values (#{id,jdbcType=INTEGER}, #{compCoreId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER},
+        #{orgId,jdbcType=BIGINT}, #{rlname,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+        #{operateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.opengroup.lzy.sys.domain.SysRole" >
+        insert into sys_role
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="compCoreId != null" >
+                comp_core_id,
+            </if>
+            <if test="companyId != null" >
+                company_id,
+            </if>
+            <if test="orgId != null" >
+                org_id,
+            </if>
+            <if test="rlname != null" >
+                rlname,
+            </if>
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="operateTime != null" >
+                operate_time,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="memo != null" >
+                memo,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="compCoreId != null" >
+                #{compCoreId,jdbcType=INTEGER},
+            </if>
+            <if test="companyId != null" >
+                #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null" >
+                #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="rlname != null" >
+                #{rlname,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null" >
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="operateTime != null" >
+                #{operateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null" >
+                #{memo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.opengroup.lzy.sys.domain.SysRole" >
+        update sys_role
+        <set >
+            <if test="compCoreId != null" >
+                comp_core_id = #{compCoreId,jdbcType=INTEGER},
+            </if>
+            <if test="companyId != null" >
+                company_id = #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null" >
+                org_id = #{orgId,jdbcType=BIGINT},
+            </if>
+            <if test="rlname != null" >
+                rlname = #{rlname,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null" >
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="operateTime != null" >
+                operate_time = #{operateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="memo != null" >
+                memo = #{memo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.opengroup.lzy.sys.domain.SysRole" >
+    update sys_role
+    set comp_core_id = #{compCoreId,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=BIGINT},
+      rlname = #{rlname,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      memo = #{memo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+    <!--////////////////////////////////////////////////////////////////////// -->
+    <select id="countRole" resultType="java.lang.Integer" parameterType="java.util.Map">
+        SELECT count(1) FROM sys_role
+        WHERE 1 = 1
+        <if test="rlname != null and rlname != ''">
+            and rlname like CONCAT('%','${rlname}','%')
+        </if>
+        <if test="orgId != null" >
+            AND org_id = #{orgId}
+        </if>
+        <choose>
+            <when test="companyId != null" >
+                AND company_id = #{companyId}
+            </when>
+            <otherwise>
+                AND company_id IS NULL
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="countRoleByName" resultMap="BaseResultMap" parameterType="com.opengroup.lzy.sys.domain.SysRole">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sys_role WHERE rlname = #{rlname}
+        <if test="orgId != null" >
+            AND org_id = #{orgId}
+        </if>
+        <if test="companyId != null" >
+            AND company_id = #{companyId}
+        </if>
+    </select>
+
+    <select id="selectRole" resultMap="BaseResultMap" parameterType="java.util.Map">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sys_role
+        WHERE 1 = 1
+        <if test="rlname != null and rlname != ''">
+            and rlname like CONCAT('%','${rlname}','%')
+        </if>
+        <if test="orgId != null" >
+            AND org_id = #{orgId}
+        </if>
+        <choose>
+            <when test="companyId != null" >
+                AND company_id = #{companyId}
+            </when>
+            <otherwise>
+                AND company_id IS NULL
+            </otherwise>
+        </choose>
+        limit #{begin} , #{rows}
+    </select>
+
+    <select id="selectAllByCompany" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sys_role WHERE
+        <choose>
+            <when test="_parameter != null" >
+                company_id = #{_parameter}
+            </when>
+            <otherwise>
+                company_id IS NULL
+            </otherwise>
+        </choose>
+    </select>
+    <!--////////////////////////////////////////////////////////////////////// -->
+</mapper>

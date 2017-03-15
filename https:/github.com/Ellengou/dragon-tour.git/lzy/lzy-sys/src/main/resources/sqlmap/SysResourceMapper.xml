@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Dao 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.opengroup.lzy.sys.dao.SysResourceDao" >
+    <resultMap id="BaseResultMap" type="com.opengroup.lzy.sys.domain.SysResource" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="pId" property="pid" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP" />
+        <result column="disorder" property="disorder" jdbcType="INTEGER" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+        <result column="rank" property="rank" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, pId, name, url, operate_time, disorder, remark, code, status, type, data_type,
+        rank
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_resource
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from sys_resource
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.opengroup.lzy.sys.domain.SysResource"  useGeneratedKeys="true" keyProperty="id">
+        insert into sys_resource (id, pId, name,
+        url, operate_time, disorder,
+        remark, code, status,
+        type, data_type, rank
+        )
+        values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{url,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, #{disorder,jdbcType=INTEGER},
+        #{remark,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{type,jdbcType=INTEGER}, #{dataType,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.opengroup.lzy.sys.domain.SysResource"  useGeneratedKeys="true" keyProperty="id">
+        insert into sys_resource
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="pid != null" >
+                pId,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="operateTime != null" >
+                operate_time,
+            </if>
+            <if test="disorder != null" >
+                disorder,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="code != null" >
+                code,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="dataType != null" >
+                data_type,
+            </if>
+            <if test="rank != null" >
+                rank,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null" >
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="operateTime != null" >
+                #{operateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="disorder != null" >
+                #{disorder,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null" >
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="dataType != null" >
+                #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="rank != null" >
+                #{rank,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.opengroup.lzy.sys.domain.SysResource" >
+        update sys_resource
+        <set >
+            <if test="pid != null" >
+                pId = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="operateTime != null" >
+                operate_time = #{operateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="disorder != null" >
+                disorder = #{disorder,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null" >
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="dataType != null" >
+                data_type = #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="rank != null" >
+                rank = #{rank,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.opengroup.lzy.sys.domain.SysResource" >
+    update sys_resource
+    set pId = #{pid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      disorder = #{disorder,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <!--////////////////////////////////////////////////////////////////////// -->
+    <select id="selectByIds" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM sys_resource WHERE 1= 1
+        <if test="resourceIds != null">
+            AND id IN ${resourceIds}
+        </if>
+        <if test="type != null">
+            AND type = ${type}
+        </if>
+        <if test="pid != null">
+            AND pid = ${pid}
+        </if>
+        <if test="status != null">
+            AND status = ${status}
+        </if>
+        <if test="dataType != null and dataType != ''">
+            AND data_type like '%${dataType}%'
+        </if>
+        ORDER BY disorder
+    </select>
+
+    <select id="countByIds" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(1) FROM sys_resource WHERE 1= 1
+        <if test="resourceIds != null">
+            AND id IN ${resourceIds}
+        </if>
+        <if test="type != null">
+            AND type = ${type}
+        </if>
+        <if test="pid != null">
+            AND pid = ${pid}
+        </if>
+        <if test="status != null">
+            AND status = ${status}
+        </if>
+        <if test="dataType != null and dataType != ''">
+            AND data_type like '%${dataType}%'
+        </if>
+        ORDER BY disorder
+    </select>
+
+    <select id="selectByUserId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM sys_resource r
+        LEFT JOIN sys_role_resource rr ON r.id = rr.resource_id
+        LEFT JOIN sys_user_role ur ON rr.role_id = ur.role_id
+        WHERE 1= 1
+        <if test="userId != null">
+            AND ur.id IN ${userId}
+        </if>
+        <if test="resourceIds != null">
+            AND r.id IN ${resourceIds}
+        </if>
+        <if test="type != null">
+            AND r.type = ${type}
+        </if>
+        <if test="pid != null">
+            AND r.pid = ${pid}
+        </if>
+        <if test="status != null">
+            AND r.status = ${status}
+        </if>
+        <if test="dataType != null and dataType != ''">
+            AND r.data_type like '%${dataType}%'
+        </if>
+        ORDER BY disorder
+    </select>
+
+    <select id="countByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT count(1) FROM sys_resource r
+        LEFT JOIN sys_role_resource rr ON r.id = rr.resource_id
+        LEFT JOIN sys_user_role ur ON rr.role_id = ur.role_id
+        WHERE 1= 1
+        <if test="userId != null">
+            AND ur.id IN ${userId}
+        </if>
+        <if test="resourceIds != null">
+            AND r.id IN ${resourceIds}
+        </if>
+        <if test="type != null">
+            AND r.type = ${type}
+        </if>
+        <if test="pid != null">
+            AND r.pid = ${pid}
+        </if>
+        <if test="status != null">
+            AND r.status = ${status}
+        </if>
+        <if test="dataType != null and dataType != ''">
+            AND r.data_type like '%${dataType}%'
+        </if>
+        ORDER BY disorder
+    </select>
+
+    <select id="selectByPid" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM sys_resource WHERE 1= 1
+        <if test="pid != null">
+            AND pid = ${pid}
+        </if>
+        ORDER BY disorder, id
+        limit ${begin}, ${rows}
+    </select>
+
+    <select id="countByPid" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT count(1) FROM sys_resource WHERE 1= 1
+        <if test="pid != null">
+            AND pid = ${pid}
+        </if>
+    </select>
+
+    <!--////////////////////////////////////////////////////////////////////// -->
+</mapper>
